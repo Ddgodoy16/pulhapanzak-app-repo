@@ -1,9 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import {person} from 'ionicons/icons';
-import { } from 'ionicons/icons';
+import { AuthService } from '../../Services/auth.service';
 
+import { addIcons } from 'ionicons';
+import {
+  lockClosedOutline,
+  callOutline,
+  cardOutline,
+  personCircleOutline,
+  mailOutline,
+} from 'ionicons/icons';
 import {
   AbstractControl,
   FormBuilder,
@@ -13,6 +20,7 @@ import {
 } from '@angular/forms';
 import {
   IonButton,
+  IonText,
   IonIcon,
   IonContent,
   IonHeader,
@@ -21,10 +29,12 @@ import {
   IonLabel,
   IonNote,
   IonSpinner,
+  
   IonTitle,
   IonToolbar,
   ToastController,
 } from '@ionic/angular/standalone';
+import { UserDto } from '../../Models/user.dto';
 
 @Component({
   selector: 'app-register',
@@ -33,6 +43,7 @@ import {
   standalone: true,
   imports: [
     CommonModule,
+    IonText,
     IonIcon,
     IonButton,
     IonContent,
@@ -45,11 +56,22 @@ import {
     IonTitle,
     IonToolbar,
     ReactiveFormsModule,
+    IonIcon,
   ],
 })
 export class RegisterPage {
-  person = person;
+  constructor() {
+    addIcons({
+      mailOutline,
+      personCircleOutline,
+      lockClosedOutline,
+      cardOutline,
+      callOutline,
+    });
+  }
   
+  private _authService: AuthService = inject(AuthService);
+
    private formBuilder: FormBuilder = inject(FormBuilder);
   private _router: Router = inject(Router);
   private _toastController: ToastController = inject(ToastController);
@@ -57,10 +79,13 @@ export class RegisterPage {
   registerForm: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
     apellido: ['', [Validators.required]],
+    dni: ['', [Validators.required]], 
     phone: ['', [Validators.required, Validators.minLength(8)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
+
+  
   spinner: boolean = false;
 
   get isNameRequired(): boolean {
@@ -110,15 +135,39 @@ export class RegisterPage {
     if (!this.isFormInvalid) {
       this.disabled = true;
       this.spinner = true;
-        setTimeout(() => {
-        this.spinner = false;
-        this.disabled = false;
-        this.showAlert('Registro exitoso');
-      }, 2000);     }
-  }
+      let newUser: UserDto = this.registerForm.value as UserDto;
 
-  resetForm(): void {
+      this._authService
+        .signUp(newUser)
+        .then(async (result) => {
+          newUser.uid = result.user.uid;
+
+          await this._authService
+            .createUserInFirestore(newUser)
+            .then(async () => {
+              this.spinner = false;
+              this.disabled = false;
+              await this.showAlert('User created successfully');
+              this._router.navigate(['/tabs/home']);
+              this.resetForm();
+            });
+        })
+        .catch(async (error) => {
+          console.error(error);
+          this.spinner = false;
+          this.disabled = false;
+          await this.showAlert(
+            'Ha ocurrido un error, vuelva a intentarlo',
+            true
+          );
+        });
+    }
+  }
+    resetForm(): void {
     this.registerForm.reset();
+  }
+  goTologin(): void {
+    this._router.navigate(['/login']);
   }
 
   async showAlert(message: string, isError: boolean = false): Promise<void> {

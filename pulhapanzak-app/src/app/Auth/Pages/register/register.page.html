@@ -20,7 +20,7 @@
     </ion-item>
     
     <ion-item>
-      <ion-icon slot="start" name="people-circle-outline"></ion-icon>
+      <ion-icon slot="start" name="person-circle-outline"></ion-icon>
       <ion-label position="floating">Apellido</ion-label>
       <ion-input type="text" formControlName="apellido"></ion-input>
       <ion-note *ngIf="isApellidoRequired" class="form--error-message">
@@ -59,7 +59,7 @@
     <ion-item>
       <ion-icon slot="start" name="call-outline"></ion-icon>
       <ion-label position="floating">Phone</ion-label>
-      <ion-input type="tel" formControlName="phone"></ion-input>
+      <ion-input type="text" formControlName="phone"></ion-input>
       <ion-note *ngIf="isPhoneRequired || isPhoneMinLegthError" class="form--error-message">
         <span *ngIf="isPhoneRequired">El campo es requerido</span>
         <span *ngIf="isPhoneMinLegthError">El número de telefono es inválido</span>
@@ -67,9 +67,13 @@
     </ion-item>
     
     
-    <ion-button type="submit" expand="block" color="success" [disabled]="isFormInvalid || disabled">
+    <ion-button type="submit" expand="full" color="success" [disabled]="isFormInvalid || disabled">
       <ion-spinner *ngIf="spinner" color="dark"></ion-spinner>Crear cuenta
     </ion-button>
+
+    <ion-text color="success" class="ion-text-center" (click)="goTologin()">
+      <small>¿Ya tienes cuenta? Iniciar Sesion</small>
+    </ion-text>
   </form>
 </ion-content>
 

@@ -13,7 +13,7 @@
     <ion-item>
       <ion-icon slot="start" name="person-circle-outline"></ion-icon>
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="name" formControlName="name"></ion-input>
+      <ion-input type="email" formControlName="name"></ion-input>
       <ion-note *ngIf="isNameRequired" class="form--error-message">
         El campo es requerido
       </ion-note>
@@ -22,7 +22,7 @@
     <ion-item>
       <ion-icon slot="start" name="person-circle-outline"></ion-icon>
       <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" formControlName="apellido"></ion-input>
+      <ion-input type="email" formControlName="apellido"></ion-input>
       <ion-note *ngIf="isApellidoRequired" class="form--error-message">
         El campo es requerido
       </ion-note>
@@ -50,7 +50,7 @@
     <ion-item>
       <ion-icon slot="start" name="card-outline"></ion-icon>
       <ion-label position="floating">DNI</ion-label>
-      <ion-input type="text" formControlName="dni"></ion-input>
+      <ion-input type="email" formControlName="dni"></ion-input>
       <ion-note *ngIf="isDniRequired" class="form--error-message">
         El campo es requerido
       </ion-note>
@@ -59,7 +59,7 @@
     <ion-item>
       <ion-icon slot="start" name="call-outline"></ion-icon>
       <ion-label position="floating">Phone</ion-label>
-      <ion-input type="text" formControlName="phone"></ion-input>
+      <ion-input type="email" formControlName="phone"></ion-input>
       <ion-note *ngIf="isPhoneRequired || isPhoneMinLegthError" class="form--error-message">
         <span *ngIf="isPhoneRequired">El campo es requerido</span>
         <span *ngIf="isPhoneMinLegthError">El número de telefono es inválido</span>

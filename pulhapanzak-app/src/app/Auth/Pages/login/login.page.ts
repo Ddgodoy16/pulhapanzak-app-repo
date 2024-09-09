@@ -55,7 +55,6 @@ export class LoginPage {
   private _router: Router = inject(Router);
   private _toastController: ToastController = inject(ToastController);
   disabled: boolean = false;
-
   loginForm: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -104,11 +103,11 @@ export class LoginPage {
         });
     }
   }
+  
 
   resetForm(): void {
     this.loginForm.reset();
   }
-
   async showAlert(message: string, isError: boolean = false): Promise<void> {
     const toast = await this._toastController.create({
       message: message,

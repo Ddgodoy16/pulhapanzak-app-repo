@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
-
+import { UserDto } from '../../Models/user.dto';
 import { addIcons } from 'ionicons';
 import {
   lockClosedOutline,
@@ -29,19 +29,18 @@ import {
   IonLabel,
   IonNote,
   IonSpinner,
-  
+  IonInputPasswordToggle,
   IonTitle,
   IonToolbar,
   ToastController,
 } from '@ionic/angular/standalone';
-import { UserDto } from '../../Models/user.dto';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
   imports: [
+    IonInputPasswordToggle,
     CommonModule,
     IonText,
     IonIcon,
@@ -148,7 +147,7 @@ export class RegisterPage {
               this.spinner = false;
               this.disabled = false;
               await this.showAlert('User created successfully');
-              this._router.navigate(['/tabs/home']);
+              this._router.navigate(['home']);
               this.resetForm();
             });
         })

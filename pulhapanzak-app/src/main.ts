@@ -14,7 +14,9 @@ bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
-    provideRouter(routes, withPreloading(PreloadAllModules)), provideFirebaseApp(() => initializeApp(environment.firebaseconfig )), provideAuth(() => getAuth()), 
+    provideRouter(routes, withPreloading(PreloadAllModules)), 
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
+    provideAuth(() => getAuth()), 
     provideFirestore(() => getFirestore()), 
     provideMessaging(() => getMessaging()), 
     provideStorage(() => getStorage()),

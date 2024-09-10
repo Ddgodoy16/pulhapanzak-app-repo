@@ -140,7 +140,7 @@ export class RegisterPage {
         .signUp(newUser)
         .then(async (result) => {
           newUser.uid = result.user.uid;
-
+console.log(newUser)
           await this._authService
             .createUserInFirestore(newUser)
             .then(async () => {

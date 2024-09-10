@@ -97,9 +97,21 @@ import {
   // Método para crear un usuario en Firestore con un UID específico
   async createUserInFirestore(user: UserDto): Promise<void> {
     const docRef: DocumentReference = doc(this._collection, user.uid);
+    console.log(docRef)
+    console.log({
+      name: user.name,
+      apellido: user.apellido,
+      dni: user.dni,
+      phone: user.phone,
+      email: user.email,
+      photo: '',
+      uid: docRef.id, 
+      isActive: true,
+    })
+    
     await setDoc(docRef, {
-        name: user.firstName,
-        apellido: user.lastName,
+        name: user.name,
+        apellido: user.apellido,
         dni: user.dni,
         phone: user.phone,
         email: user.email,
@@ -108,14 +120,15 @@ import {
         isActive: true,
       });
   }
+
   
 
   // Método para crear un usuario en Firestore con un UID generado por Firestore
   async createUser(user: UserDto): Promise<void> {
     const docRef: DocumentReference = doc(this._collection);
     await setDoc(docRef, {
-      name: user.firstName,
-      apellido: user.lastName,
+      name: user.name,
+      apellido: user.apellido,
       dni: user.dni,
       phone: user.phone,
       email: user.email,

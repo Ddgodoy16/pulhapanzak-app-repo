@@ -24,15 +24,14 @@ import {
   IonText,
   IonTitle,
   IonToolbar,
-  ToastController,
-} from '@ionic/angular/standalone';
+  ToastController, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonBackButton, IonButtons, 
     CommonModule,
     IonButton,
     IonContent,
@@ -92,7 +91,7 @@ export class LoginPage {
           this.spinner = false;
           this.disabled = false;
           await this.showAlert('Login successful');
-          this._router.navigate(['/tabs/home']);
+          this._router.navigate(['tabs/home']);
           this.resetForm();
         })
         .catch(async (error) => {

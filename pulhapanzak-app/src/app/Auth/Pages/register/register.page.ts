@@ -20,6 +20,8 @@ import {
 } from '@angular/forms';
 import {
   IonButton,
+  IonButtons,
+  IonBackButton,
   IonText,
   IonIcon,
   IonContent,
@@ -41,6 +43,8 @@ import {
   standalone: true,
   imports: [
     IonInputPasswordToggle,
+    IonButtons,
+    IonBackButton,
     CommonModule,
     IonText,
     IonIcon,
@@ -60,13 +64,7 @@ import {
 })
 export class RegisterPage {
   constructor() {
-    addIcons({
-      mailOutline,
-      personCircleOutline,
-      lockClosedOutline,
-      cardOutline,
-      callOutline,
-    });
+    addIcons({personCircleOutline,mailOutline,lockClosedOutline,cardOutline,callOutline});
   }
   
   private _authService: AuthService = inject(AuthService);
@@ -147,7 +145,7 @@ console.log(newUser)
               this.spinner = false;
               this.disabled = false;
               await this.showAlert('User created successfully');
-              this._router.navigate(['home']);
+              this._router.navigate(['tabs/home']);
               this.resetForm();
             });
         })

@@ -1,13 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title class="ion-text-center">Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Inicio de sesión</ion-title>
+      <ion-title  size="large">Inicio de sesión</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -34,21 +34,31 @@
     </ion-item>
 
     
-    <ion-button expand="block" color="success" fill="clear" (click)="onForgotPassword()">
+    <ion-button  class="right-align-button" color="success" fill="clear" (click)="onForgotPassword()">
       ¿Olvidaste tu contraseña?
     </ion-button>
 
     <ion-button
       type="submit"
-      expand="block"
+      
       color="success"
+      class="custom-button" 
       [disabled]="isFormInvalid || disabled"
     >
       <ion-spinner *ngIf="spinner" color="dark"></ion-spinner>Iniciar sesión
     </ion-button>
   </form>
 
-  <ion-text color="success" class="ion-text-center" (click)="goToRegister()">
-    <small>¿No tienes una cuenta? Registrarte</small>
+
+  <div class="divider">
+    <span>o</span>
+  </div>
+
+  <ion-text class="ion-text-center" (click)="goToRegister()">
+    <small>
+      <span class="white-text">¿No tienes una cuenta?</span> 
+      <span class="green-text">Registrarte</span>
+    </small>
   </ion-text>
+  
 </ion-content>

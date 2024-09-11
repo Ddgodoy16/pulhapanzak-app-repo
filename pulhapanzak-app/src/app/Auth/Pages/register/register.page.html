@@ -1,79 +1,98 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Registro</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Registro</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Registro de usuario</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+   
+    <ion-item class="custom-item">
+      <ion-icon slot="start" name="person-circle-outline" class="custom-icon"></ion-icon>
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="email" formControlName="name"></ion-input>
+      <ion-input type="text" formControlName="name" class="custom-input"></ion-input>
       <ion-note *ngIf="isNameRequired" class="form--error-message">
         El campo es requerido
       </ion-note>
     </ion-item>
+
     
-    <ion-item>
-      <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+    <ion-item class="custom-item">
+      <ion-icon slot="start" name="person-circle-outline" class="custom-icon"></ion-icon>
       <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="email" formControlName="apellido"></ion-input>
+      <ion-input type="text" formControlName="apellido" class="custom-input"></ion-input>
       <ion-note *ngIf="isApellidoRequired" class="form--error-message">
         El campo es requerido
       </ion-note>
     </ion-item>
+
     
-    <ion-item>
-      <ion-icon slot="start" name="mail-outline"></ion-icon>
+    <ion-item class="custom-item">
+      <ion-icon slot="start" name="mail-outline" class="custom-icon"></ion-icon>
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
+      <ion-input type="email" formControlName="email" class="custom-input"></ion-input>
       <ion-note *ngIf="isEmailInvalid || isEmailRequired" class="form--error-message">
         <span *ngIf="isEmailRequired">El campo es requerido</span>
         <span *ngIf="isEmailInvalid">El correo electrónico es inválido</span>
       </ion-note>
     </ion-item>
+
     
-    <ion-item>
-      <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+    <ion-item class="custom-item">
+      <ion-icon slot="start" name="lock-closed-outline" class="custom-icon"></ion-icon>
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
+      <ion-input type="password" formControlName="password" class="custom-input"></ion-input>
       <ion-note *ngIf="isPasswordRequired" class="form--error-message">
         El campo es requerido
       </ion-note>
     </ion-item>
+
     
-    <ion-item>
-      <ion-icon slot="start" name="card-outline"></ion-icon>
+    <ion-item class="custom-item">
+      <ion-icon slot="start" name="card-outline" class="custom-icon"></ion-icon>
       <ion-label position="floating">DNI</ion-label>
-      <ion-input type="email" formControlName="dni"></ion-input>
+      <ion-input type="text" formControlName="dni" class="custom-input"></ion-input>
       <ion-note *ngIf="isDniRequired" class="form--error-message">
         El campo es requerido
       </ion-note>
     </ion-item>
+
     
-    <ion-item>
-      <ion-icon slot="start" name="call-outline"></ion-icon>
+    <ion-item class="custom-item">
+      <ion-icon slot="start" name="call-outline" class="custom-icon"></ion-icon>
       <ion-label position="floating">Phone</ion-label>
-      <ion-input type="email" formControlName="phone"></ion-input>
+      <ion-input type="text" formControlName="phone" class="custom-input"></ion-input>
       <ion-note *ngIf="isPhoneRequired || isPhoneMinLegthError" class="form--error-message">
         <span *ngIf="isPhoneRequired">El campo es requerido</span>
-        <span *ngIf="isPhoneMinLegthError">El número de telefono es inválido</span>
+        <span *ngIf="isPhoneMinLegthError">El número de teléfono es inválido</span>
       </ion-note>
     </ion-item>
+
     
-    
-    <ion-button type="submit" expand="full" color="success" [disabled]="isFormInvalid || disabled">
-      <ion-spinner *ngIf="spinner" color="dark"></ion-spinner>Crear cuenta
+    <ion-button type="submit" class="custom-button" color="success" [disabled]="isFormInvalid || disabled">
+      <ion-spinner *ngIf="spinner" color="dark"></ion-spinner>
+      Crear cuenta
     </ion-button>
 
-    <ion-text color="success" class="ion-text-center" (click)="goTologin()">
-      <small>¿Ya tienes cuenta? Iniciar Sesion</small>
+    <div class="divider">
+      <span>o</span>
+    </div>
+
+    
+    <ion-text class="ion-text-center" (click)="goTologin()">
+      <small>
+        <span class="white-text">¿Ya tienes cuenta?</span> 
+        <span class="green-text">Iniciar Sesión</span>
+      </small>
     </ion-text>
   </form>
 </ion-content>
-

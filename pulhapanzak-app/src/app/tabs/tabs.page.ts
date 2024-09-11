@@ -10,14 +10,14 @@ import {
   IonLabel,
   IonTabBar,
   IonTabButton,
-  IonTabs, IonHeader, IonToolbar, IonTitle } from '@ionic/angular/standalone';
+  IonTabs,  IonToolbar, } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
   standalone: true,
-  imports: [IonTitle, IonToolbar, IonHeader, IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs],
+  imports: [ IonToolbar,  IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs],
 })
 export class TabsPage {
   constructor() {

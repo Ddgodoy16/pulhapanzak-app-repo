@@ -91,7 +91,7 @@ export class LoginPage {
           this.spinner = false;
           this.disabled = false;
           await this.showAlert('Login successful');
-          this._router.navigate(['tabs/home']);
+          this._router.navigate(['tabs']);
           this.resetForm();
         })
         .catch(async (error) => {

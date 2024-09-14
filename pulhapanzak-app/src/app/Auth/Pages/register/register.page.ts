@@ -145,7 +145,7 @@ console.log(newUser)
               this.spinner = false;
               this.disabled = false;
               await this.showAlert('User created successfully');
-              this._router.navigate(['tabs/home']);
+              this._router.navigate(['tabs']);
               this.resetForm();
             });
         })

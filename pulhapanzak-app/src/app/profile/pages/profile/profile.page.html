@@ -1,13 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
+      <ion-title size="large">Perfil de usuario</ion-title>
     </ion-toolbar>
   </ion-header>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-img class="image-profile" [src]="user.photo" width="30" (click)="onPickImage()"></ion-img>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="email" formControlName="name"></ion-input>
+      <ion-note *ngIf="isNameRequired" class="form--error-message">
+        El campo es requerido
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Phone</ion-label>
+      <ion-input type="email" formControlName="phone"></ion-input>
+      <ion-note *ngIf="isPhoneRequired || isPhoneMinLegthError" class="form--error-message">
+        <span *ngIf="isPhoneRequired">El campo es requerido</span>
+        <span *ngIf="isPhoneMinLegthError">El número de telefono es inválido</span>
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" formControlName="email" readonly="true"></ion-input>
+    </ion-item>
+    <ion-button type="submit" expand="block" color="success" [disabled]="isFormInvalid || disabled">
+      <ion-spinner *ngIf="spinner" color="dark"></ion-spinner>Actualizar Perfil
+    </ion-button>
+  </form>
 </ion-content>

@@ -6,5 +6,6 @@ export interface UserDto
     password: string;
     dni: string;
     phone: string;
+    photo: string;
     uid: string;
   }

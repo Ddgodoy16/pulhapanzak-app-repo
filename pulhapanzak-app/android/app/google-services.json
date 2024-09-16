@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "105664138852",
+    "project_id": "pulha-app-578ca",
+    "storage_bucket": "pulha-app-578ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105664138852:android:ff69a9353fd260da325971",
+        "android_client_info": {
+          "package_name": "com.ceutec.pulhaap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNlfYDQP9wt4-3wAYS6DS40lRKzkIuTUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

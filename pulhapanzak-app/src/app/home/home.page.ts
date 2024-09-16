@@ -22,6 +22,7 @@ export class HomePage implements OnInit {
   private _router: Router = inject(Router);
   private _toastController: ToastController = inject(ToastController);
 
+ 
   async ngOnInit(): Promise<void> {
     await this._authService
       .getUserById()

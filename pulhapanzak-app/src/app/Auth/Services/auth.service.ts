@@ -17,7 +17,12 @@ import {
     DocumentReference,
     setDoc,
     getDoc,
-   
+    getDocs,
+    query,
+    where,
+    orderBy,
+    updateDoc,
+    deleteDoc,
   } from '@angular/fire/firestore';
 
   const PATH: string = 'users';
@@ -138,6 +143,7 @@ import {
     });
   }
 
+  // Método para obtener un usuario por su UID del documento
   async getUserById(): Promise<UserDto | null> {
     try {
       const user = await this.getCurrentUser();
@@ -150,5 +156,45 @@ import {
     } catch (error) {
       throw error;
     }
+  }
+
+  // Método para obtener un usuario por medio de un query
+  async getUserByQuery(): Promise<UserDto | null> {
+    const user = await this.getCurrentUser();
+    const userQuery = query(
+      this._collection,
+      where('uid', '==', user?.uid),
+      where('isActive', '==', true),
+      where('age', '>=', 23),
+      orderBy('name', 'asc') // Para ordenar de forma ascendente
+      //orderBy('name', 'desc') // Para ordenar de forma descendente
+    );
+    const userSnapshot = await getDocs(userQuery);
+    if (userSnapshot.empty) {
+      return null;
+    }
+    return userSnapshot.docs[0].data() as UserDto;
+  }
+
+  // Método para actualizar un usuario en Firestore.
+  async updateUser(user: UserDto): Promise<void> {
+    if (!user.uid) throw new Error('User UID is required');
+
+    const docRef = doc(this._collection, user.uid);
+    await updateDoc(docRef, {
+      ...{
+        name: user.name,
+        phone: user.phone,
+        email: user.email,
+        photo: user.photo,
+      },
+    });
+  }
+
+  async deleteUser(id: string): Promise<void> {
+    if (!id) throw new Error('User UID is required');
+
+    const docRef = doc(this._collection, id);
+    await deleteDoc(docRef);
   }
 }

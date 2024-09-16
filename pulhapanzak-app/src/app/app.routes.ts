@@ -1,4 +1,7 @@
 import { Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { AuthGuard } from './Auth/guards/auth-guard';
+
 
 export const routes: Routes = [
   {
@@ -19,6 +22,8 @@ export const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
+    canActivate: [() => inject(AuthGuard).canActivate()],
+
   },
   // Redirección por defecto en caso de una ruta no encontrada
   {

@@ -7,15 +7,14 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  ToastController,
-} from '@ionic/angular/standalone';
+  ToastController, IonLabel, IonList, IonItem, IonAvatar } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonButton, IonContent, IonHeader, IonTitle, IonToolbar],
+  imports: [IonAvatar, IonItem, IonList, IonLabel, IonButton, IonContent, IonHeader, IonTitle, IonToolbar],
 })
 export class HomePage implements OnInit {
   private _authService: AuthService = inject(AuthService);

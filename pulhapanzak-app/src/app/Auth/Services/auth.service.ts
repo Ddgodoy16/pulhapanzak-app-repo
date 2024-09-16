@@ -1,6 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { LoginDto } from '../Models/login.dto';
 import { UserDto } from '../Models/user.dto';
+import {  DeviceDto} from '../Models/device.dto';
+
 import {
   Auth,
   createUserWithEmailAndPassword,
@@ -23,9 +25,11 @@ import {
     orderBy,
     updateDoc,
     deleteDoc,
+    addDoc,
   } from '@angular/fire/firestore';
 
   const PATH: string = 'users';
+  const devicePath: string = 'devices';
 
   @Injectable({
     providedIn: 'root',
@@ -61,6 +65,11 @@ import {
       });
     }
   
+    async getCurrentUserId(): Promise<string | null> {
+      const user = await this.getCurrentUser();
+      return user?.uid ?? null;
+    }
+
     async login(model: LoginDto): Promise<UserCredential> {
       const isUserLoggued: boolean = await this.isUserLoggued();
       if (isUserLoggued) return Promise.reject('User is loggued');
@@ -196,5 +205,12 @@ import {
 
     const docRef = doc(this._collection, id);
     await deleteDoc(docRef);
+  }
+  async createDevice(device: DeviceDto): Promise<void> {
+    const deviceCollection: CollectionReference = collection(
+      this._firestore,
+      devicePath
+    );
+    await addDoc(deviceCollection, device);
   }
 }
